@@ -1,0 +1,1113 @@
+Watching for file changes with StatReloader
+[01/Aug/2025 13:07:16] "GET /admin/ HTTP/1.1" 200 11846
+[01/Aug/2025 13:07:16] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:07:16] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 22, in lista_barbearias
+    return render(request, 'barbearias/lista_barbearias.html', context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'consultar_agendamentos' not found. 'consultar_agendamentos' is not a valid view function or pattern name.
+[01/Aug/2025 13:07:21] "HEAD / HTTP/1.1" 500 0
+[01/Aug/2025 13:07:32] "GET /barbearia-teste/ HTTP/1.1" 200 14532
+[01/Aug/2025 13:07:33] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 20984
+[01/Aug/2025 13:07:40] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-08&servico_id=1 HTTP/1.1" 200 1296
+/home/gabriell/Documentos/barbearia/barbearia_system/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:07:15
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[01/Aug/2025 13:07:56] "GET /barbearia-teste/ HTTP/1.1" 200 14532
+[01/Aug/2025 13:07:58] "GET /barbearia-teste/ HTTP/1.1" 200 14532
+[01/Aug/2025 13:07:59] "GET / HTTP/1.1" 200 12042
+[01/Aug/2025 13:07:59] "GET /barbearia-teste/consultar/ HTTP/1.1" 200 6998
+[01/Aug/2025 13:08:01] "POST /barbearia-teste/consultar/ HTTP/1.1" 200 14954
+[01/Aug/2025 13:08:08] "GET /barbearia-teste/ HTTP/1.1" 200 14532
+[01/Aug/2025 13:09:51] "GET /barbearia-teste/ HTTP/1.1" 200 14537
+[01/Aug/2025 13:10:10] "GET /barbearia-teste/admin/login/ HTTP/1.1" 302 0
+[01/Aug/2025 13:10:10] "GET /barbearia-teste/admin/ HTTP/1.1" 200 17371
+[01/Aug/2025 13:10:13] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21193
+[01/Aug/2025 13:10:14] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:10:17] "GET /barbearia-teste/admin/ HTTP/1.1" 200 17371
+/home/gabriell/Documentos/barbearia/barbearias/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:07:53
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/threading.py", line 1043, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/lib/python3.13/threading.py", line 994, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+    ~~^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/management/commands/runserver.py", line 134, in inner_run
+    self.check(**check_kwargs)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/management/base.py", line 492, in check
+    all_issues = checks.run_checks(
+        app_configs=app_configs,
+    ...<2 lines>...
+        databases=databases,
+    )
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/checks/registry.py", line 89, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/checks/urls.py", line 136, in check_custom_error_handlers
+    handler = resolver.resolve_error_handler(status_code)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 732, in resolve_error_handler
+    callback = getattr(self.urlconf_module, "handler%s" % view_type, None)
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 711, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/gabriell/Documentos/barbearia/barbearia_system/urls.py", line 24, in <module>
+    path('', include('barbearias.urls')),
+             ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/urls/conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/gabriell/Documentos/barbearia/barbearias/urls.py", line 14, in <module>
+    path('<slug:slug>/api/dias-fechados/', views.api_dias_fechados, name='api_dias_fechados'),
+                                           ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'barbearias.views' has no attribute 'api_dias_fechados'
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+Watching for file changes with StatReloader
+[01/Aug/2025 13:10:45] "GET /barbearia-teste/ HTTP/1.1" 200 14537
+[01/Aug/2025 13:11:28] "GET /barbearia-teste/ HTTP/1.1" 200 14537
+[01/Aug/2025 13:11:29] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22114
+[01/Aug/2025 13:11:29] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:11:35] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-08&servico_id=1 HTTP/1.1" 200 1296
+[01/Aug/2025 13:11:39] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21193
+[01/Aug/2025 13:11:41] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23324
+[01/Aug/2025 13:11:42] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21193
+[01/Aug/2025 13:11:43] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:11:46] "POST /barbearia-teste/admin/horarios/ HTTP/1.1" 302 0
+[01/Aug/2025 13:11:46] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 23231
+[01/Aug/2025 13:12:34] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:13:11] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 23068
+[01/Aug/2025 13:13:11] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:13:43] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 23068
+[01/Aug/2025 13:13:43] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:13:54] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-08&servico_id=6 HTTP/1.1" 200 1123
+[01/Aug/2025 13:15:08] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-04&servico_id=1 HTTP/1.1" 200 154
+[01/Aug/2025 13:16:50] "GET /barbearia-teste/ HTTP/1.1" 200 14537
+[01/Aug/2025 13:16:52] "GET /barbearia-teste/ HTTP/1.1" 200 14537
+[01/Aug/2025 13:16:53] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22726
+[01/Aug/2025 13:16:53] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:17:24] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-08&servico_id=6 HTTP/1.1" 200 1123
+[01/Aug/2025 13:22:05] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22868
+[01/Aug/2025 13:22:05] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:22:07] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:22:10] "GET /barbearia-teste/ HTTP/1.1" 200 14679
+[01/Aug/2025 13:23:33] "GET /barbearia-teste/ HTTP/1.1" 200 14676
+[01/Aug/2025 13:23:41] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:23:43] "GET /barbearia-teste/admin/ HTTP/1.1" 200 17371
+[01/Aug/2025 13:23:45] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23324
+[01/Aug/2025 13:23:46] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14381
+[01/Aug/2025 13:23:47] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21193
+[01/Aug/2025 13:23:48] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:23:58] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22871
+[01/Aug/2025 13:23:58] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:10:45
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/models.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:24:02
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[01/Aug/2025 13:24:25] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:25] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:25] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:25] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:26] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:26] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:26] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:24:26] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22411
+[01/Aug/2025 13:25:53] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22312
+[01/Aug/2025 13:25:55] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21088
+[01/Aug/2025 13:26:01] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:26:03] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:26:04] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22312
+[01/Aug/2025 13:26:08] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21088
+[01/Aug/2025 13:26:08] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:26:09] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:26:10] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:26:10] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:26:10] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:26:11] "GET /barbearia-teste/admin/ HTTP/1.1" 200 17272
+[01/Aug/2025 13:26:30] "GET /barbearia-teste/admin/ HTTP/1.1" 200 17272
+[01/Aug/2025 13:26:32] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:26:33] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:26:33] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:26:42] "GET /barbearia-teste/admin/logout/ HTTP/1.1" 302 0
+[01/Aug/2025 13:26:42] "GET /barbearia-teste/ HTTP/1.1" 200 15459
+[01/Aug/2025 13:27:01] "GET /barbearia-teste/admin/login/ HTTP/1.1" 200 3856
+[01/Aug/2025 13:27:11] "POST /barbearia-teste/admin/login/ HTTP/1.1" 302 0
+[01/Aug/2025 13:27:11] "GET /barbearia-teste/admin/ HTTP/1.1" 200 18058
+[01/Aug/2025 13:27:15] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:27:16] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:27:18] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 21094
+[01/Aug/2025 13:27:19] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22312
+[01/Aug/2025 13:27:21] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14276
+[01/Aug/2025 13:27:21] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:28:34] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:28:35] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23219
+[01/Aug/2025 13:29:02] "GET /barbearia-teste/ HTTP/1.1" 200 14676
+[01/Aug/2025 13:29:06] "GET /barbearia-teste/ HTTP/1.1" 200 14676
+[01/Aug/2025 13:29:21] "GET /barbearia-teste/admin/login/ HTTP/1.1" 302 0
+[01/Aug/2025 13:29:21] "GET /barbearia-teste/admin/ HTTP/1.1" 200 17272
+[01/Aug/2025 13:29:26] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+[01/Aug/2025 13:29:26] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:31:58] "GET /barbearia-teste HTTP/1.1" 400 74451
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:31:59] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:32:02] "GET /barbearia-teste HTTP/1.1" 400 74588
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:32:02] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:32:03] "GET /barbearia-teste HTTP/1.1" 400 74588
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:32:03] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:32:48] "GET /barbearia-teste HTTP/1.1" 400 74484
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:32:50] "GET /favicon.ico HTTP/1.1" 400 74390
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:21] "GET /barbearia-teste HTTP/1.1" 400 74451
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:21] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:22] "GET /barbearia-teste HTTP/1.1" 400 74588
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:22] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:29] "GET /barbearia-teste HTTP/1.1" 400 74588
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:30] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:31] "GET /barbearia-teste HTTP/1.1" 400 74588
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:31] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:32] "GET /barbearia-teste HTTP/1.1" 400 74588
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:33:32] "GET /favicon.ico HTTP/1.1" 400 74357
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:35:54] "GET /barbearia-teste HTTP/1.1" 400 74621
+Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/utils/deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/http/request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '192.168.0.44:8000'. You may need to add '192.168.0.44' to ALLOWED_HOSTS.
+[01/Aug/2025 13:35:54] "GET /favicon.ico HTTP/1.1" 400 74390
+/home/gabriell/Documentos/barbearia/barbearia_system/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:24:17
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[01/Aug/2025 13:36:48] "GET /barbearia-teste HTTP/1.1" 301 0
+[01/Aug/2025 13:36:48] "GET /barbearia-teste/ HTTP/1.1" 200 14676
+Not Found: /favicon.ico
+[01/Aug/2025 13:36:49] "GET /favicon.ico HTTP/1.1" 404 8463
+[01/Aug/2025 13:36:52] "GET /barbearia-teste HTTP/1.1" 301 0
+[01/Aug/2025 13:36:53] "GET /barbearia-teste/ HTTP/1.1" 200 14676
+Not Found: /favicon.ico
+[01/Aug/2025 13:36:54] "GET /favicon.ico HTTP/1.1" 404 8463
+[01/Aug/2025 13:37:15] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22871
+[01/Aug/2025 13:37:16] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:37:37] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-05&servico_id=1 HTTP/1.1" 200 1296
+[01/Aug/2025 13:37:42] "GET /admin/auth/user/ HTTP/1.1" 200 16491
+[01/Aug/2025 13:37:42] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[01/Aug/2025 13:37:42] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:42] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /admin/auth/user/5/change/ HTTP/1.1" 200 26478
+[01/Aug/2025 13:37:47] "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/js/SelectBox.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[01/Aug/2025 13:37:47] "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/img/selector-icons.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:47] "GET /static/admin/img/icon-clock.svg HTTP/1.1" 304 0
+[01/Aug/2025 13:37:50] "GET /admin/barbearias/barbearia/ HTTP/1.1" 200 15687
+[01/Aug/2025 13:37:50] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[01/Aug/2025 13:37:51] "POST /barbearia-teste/agendar/ HTTP/1.1" 302 0
+[01/Aug/2025 13:37:51] "GET /barbearia-teste/ HTTP/1.1" 200 15458
+[01/Aug/2025 13:37:59] "GET /barbearia-teste/consultar/ HTTP/1.1" 200 7142
+[01/Aug/2025 13:38:06] "POST /barbearia-teste/consultar/ HTTP/1.1" 200 12294
+[01/Aug/2025 13:38:07] "GET /cortes-joao/ HTTP/1.1" 200 12159
+[01/Aug/2025 13:38:41] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 24315
+[01/Aug/2025 13:38:46] "POST /barbearia-teste/agendamentos/4/cancelar/ HTTP/1.1" 302 0
+[01/Aug/2025 13:38:46] "GET /barbearia-teste/consultar/?telefone=11994306887 HTTP/1.1" 200 11596
+[01/Aug/2025 13:38:52] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 22836
+[01/Aug/2025 13:38:52] "GET /cortes-joao HTTP/1.1" 301 0
+[01/Aug/2025 13:38:52] "GET /cortes-joao/ HTTP/1.1" 200 12159
+Not Found: /favicon.ico
+[01/Aug/2025 13:38:55] "GET /favicon.ico HTTP/1.1" 404 8463
+[01/Aug/2025 13:38:56] "POST /barbearia-teste/admin/agendamentos/3/status/ HTTP/1.1" 302 0
+[01/Aug/2025 13:38:56] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 24473
+[01/Aug/2025 13:39:01] "GET /cortes-joao/agendar/ HTTP/1.1" 200 21870
+[01/Aug/2025 13:39:03] "GET /cortes-joao/api/dias-fechados/ HTTP/1.1" 200 21
+[01/Aug/2025 13:39:06] "POST /barbearia-teste/admin/agendamentos/3/status/ HTTP/1.1" 302 0
+[01/Aug/2025 13:39:06] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 24438
+[01/Aug/2025 13:39:12] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 23646
+[01/Aug/2025 13:39:13] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22871
+[01/Aug/2025 13:39:14] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:39:31] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-08&servico_id=4 HTTP/1.1" 200 1236
+[01/Aug/2025 13:39:39] "POST /barbearia-teste/agendar/ HTTP/1.1" 302 0
+[01/Aug/2025 13:39:40] "GET /barbearia-teste/ HTTP/1.1" 200 15458
+[01/Aug/2025 13:39:47] "GET /barbearia-teste/consultar/ HTTP/1.1" 200 7142
+[01/Aug/2025 13:39:50] "POST /barbearia-teste/consultar/ HTTP/1.1" 200 15467
+[01/Aug/2025 13:41:39] "GET /cortes-joao/ HTTP/1.1" 200 12159
+[01/Aug/2025 13:42:07] "GET /cortes-joao/agendar/ HTTP/1.1" 200 21870
+[01/Aug/2025 13:42:08] "GET /cortes-joao/api/dias-fechados/ HTTP/1.1" 200 21
+[01/Aug/2025 13:42:44] "GET /barbearia-teste HTTP/1.1" 301 0
+[01/Aug/2025 13:42:44] "GET /barbearia-teste/ HTTP/1.1" 200 14676
+[01/Aug/2025 13:42:51] "GET /barbearia-teste/agendar/ HTTP/1.1" 200 22871
+[01/Aug/2025 13:42:52] "GET /barbearia-teste/api/dias-fechados/ HTTP/1.1" 200 22
+[01/Aug/2025 13:43:18] "GET /barbearia-teste/api/horarios-disponiveis/?profissional_id=1&data=2025-08-02&servico_id=1 HTTP/1.1" 200 1296
+[01/Aug/2025 13:43:31] "POST /barbearia-teste/agendar/ HTTP/1.1" 302 0
+[01/Aug/2025 13:43:32] "GET /barbearia-teste/ HTTP/1.1" 200 15458
+[01/Aug/2025 13:43:48] "GET /barbearia-teste/consultar/ HTTP/1.1" 200 7142
+[01/Aug/2025 13:43:56] "POST /barbearia-teste/consultar/ HTTP/1.1" 200 12297
+[01/Aug/2025 13:44:07] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 30081
+[01/Aug/2025 13:44:13] "POST /barbearia-teste/admin/agendamentos/6/status/ HTTP/1.1" 302 0
+[01/Aug/2025 13:44:13] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 31726
+[01/Aug/2025 13:44:30] "GET /barbearia-teste/admin/ HTTP/1.1" 200 18641
+[01/Aug/2025 13:44:33] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+[01/Aug/2025 13:44:34] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 30891
+[01/Aug/2025 13:44:36] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22312
+[01/Aug/2025 13:44:41] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+[01/Aug/2025 13:44:42] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+Internal Server Error: /barbearia-teste/admin/servicos/1/editar/
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 210, in _wrapped_view
+    return view_func(request, slug, *args, **kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 342, in admin_servico_editar
+    agendamentos_pendentes = profissional.agendamento_set.filter(status='agendado').count()
+                             ^^^^^^^^^^^^
+NameError: name 'profissional' is not defined. Did you mean: 'Profissional'?
+[01/Aug/2025 13:44:45] "GET /barbearia-teste/admin/servicos/1/editar/ HTTP/1.1" 500 78085
+Internal Server Error: /barbearia-teste/admin/servicos/1/editar/
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 210, in _wrapped_view
+    return view_func(request, slug, *args, **kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 342, in admin_servico_editar
+    agendamentos_pendentes = profissional.agendamento_set.filter(status='agendado').count()
+                             ^^^^^^^^^^^^
+NameError: name 'profissional' is not defined. Did you mean: 'Profissional'?
+[01/Aug/2025 13:44:53] "GET /barbearia-teste/admin/servicos/1/editar/ HTTP/1.1" 500 78085
+Internal Server Error: /barbearia-teste/admin/servicos/1/editar/
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 210, in _wrapped_view
+    return view_func(request, slug, *args, **kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 342, in admin_servico_editar
+    agendamentos_pendentes = profissional.agendamento_set.filter(status='agendado').count()
+                             ^^^^^^^^^^^^
+NameError: name 'profissional' is not defined. Did you mean: 'Profissional'?
+[01/Aug/2025 13:45:30] "GET /barbearia-teste/admin/servicos/1/editar/ HTTP/1.1" 500 78085
+[01/Aug/2025 13:45:50] "GET /barbearia-teste/admin/servicos/4/deletar/ HTTP/1.1" 200 14772
+[01/Aug/2025 13:45:52] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:36:04
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[01/Aug/2025 13:46:07] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+[01/Aug/2025 13:46:09] "GET /barbearia-teste/admin/servicos/1/editar/ HTTP/1.1" 200 13574
+[01/Aug/2025 13:46:13] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+[01/Aug/2025 13:46:20] "GET /barbearia-teste/consultar/ HTTP/1.1" 200 7142
+[01/Aug/2025 13:46:31] "GET /barbearia-teste/admin HTTP/1.1" 301 0
+[01/Aug/2025 13:46:31] "GET /barbearia-teste/admin/ HTTP/1.1" 302 0
+[01/Aug/2025 13:46:31] "GET /barbearia-teste/admin/login/ HTTP/1.1" 200 4628
+[01/Aug/2025 13:46:44] "GET /barbearia-teste/admin/ HTTP/1.1" 200 18641
+[01/Aug/2025 13:46:51] "GET /cortes-joao/admin/ HTTP/1.1" 302 0
+[01/Aug/2025 13:46:51] "GET /cortes-joao/admin/login/ HTTP/1.1" 200 4582
+[01/Aug/2025 13:47:00] "POST /barbearia-teste/admin/login/ HTTP/1.1" 200 4149
+[01/Aug/2025 13:47:01] "POST /cortes-joao/admin/login/ HTTP/1.1" 302 0
+[01/Aug/2025 13:47:01] "GET /cortes-joao/admin/ HTTP/1.1" 200 17752
+[01/Aug/2025 13:47:09] "GET /cortes-joao/admin/horarios/ HTTP/1.1" 200 22060
+[01/Aug/2025 13:47:11] "GET /cortes-joao/admin/agendamentos/ HTTP/1.1" 200 13675
+[01/Aug/2025 13:47:12] "POST /barbearia-teste/admin/login/ HTTP/1.1" 200 4149
+[01/Aug/2025 13:47:12] "GET /cortes-joao/admin/profissionais/ HTTP/1.1" 200 10726
+[01/Aug/2025 13:47:22] "GET /cortes-joao/admin/servicos/ HTTP/1.1" 200 11123
+[01/Aug/2025 13:47:26] "GET /cortes-joao/admin/ HTTP/1.1" 200 16961
+[01/Aug/2025 13:47:29] "POST /barbearia-teste/admin/login/ HTTP/1.1" 302 0
+[01/Aug/2025 13:47:29] "GET /barbearia-teste/admin/ HTTP/1.1" 200 19427
+[01/Aug/2025 13:47:54] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+[01/Aug/2025 13:48:40] "GET /barbearia-teste/admin/ HTTP/1.1" 302 0
+[01/Aug/2025 13:48:40] "GET /barbearia-teste/admin/login/ HTTP/1.1" 200 4594
+[01/Aug/2025 13:48:50] "POST /barbearia-teste/admin/login/ HTTP/1.1" 302 0
+[01/Aug/2025 13:48:50] "GET /barbearia-teste/admin/ HTTP/1.1" 200 19427
+[01/Aug/2025 13:48:55] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:48:57] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:49:03] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 23225
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:49:03] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:50:58] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+[01/Aug/2025 13:51:09] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 30891
+[01/Aug/2025 13:51:16] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 34852
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:51:16] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:51:21] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 30891
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:51:21] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:51:34] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22312
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:51:34] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:51:37] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 34852
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:51:37] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:51:45] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 34852
+[01/Aug/2025 13:52:26] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 34852
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:52:26] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:52:28] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 30944
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:52:28] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:52:32] "GET /barbearia-teste/admin/agendamentos/?data=&status=&profissional= HTTP/1.1" 200 30944
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:52:32] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:52:39] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:52:39] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:52:42] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 48641
+[01/Aug/2025 13:52:56] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 48641
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:52:56] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:53:14] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:53:14] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:54:08] "GET /barbearia-teste/admin/horarios/ HTTP/1.1" 200 22312
+[01/Aug/2025 13:54:11] "GET /barbearia-teste/admin/profissionais/1/agenda/ HTTP/1.1" 200 28313
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:54:11] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:54:14] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 48641
+[01/Aug/2025 13:54:16] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:54:16] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:54:18] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 14282
+[01/Aug/2025 13:54:43] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 17250
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Aug/2025 13:54:43] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8571
+[01/Aug/2025 13:54:48] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 17250
+[01/Aug/2025 13:55:12] "GET /barbearia-teste/admin/ HTTP/1.1" 200 18641
+[01/Aug/2025 13:55:13] "GET /barbearia-teste/admin/servicos/ HTTP/1.1" 200 34852
+[01/Aug/2025 13:55:15] "GET /barbearia-teste/admin/profissionais/ HTTP/1.1" 200 17250
+[01/Aug/2025 13:55:15] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 48641
+[01/Aug/2025 13:55:16] "GET /barbearia-teste/admin/ HTTP/1.1" 200 18641
+/home/gabriell/Documentos/barbearia/barbearia_system/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 13:45:56
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/agendamentos/models.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:01:50
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Internal Server Error: /barbearia-teste/admin/agendamentos/
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: agendamentos_agendamento.notificacao_enviada
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 210, in _wrapped_view
+    return view_func(request, slug, *args, **kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 425, in admin_agendamentos_lista
+    return render(request, 'barbearias/admin/agendamentos_lista.html', context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 326, in render
+    if match:
+       ^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/query.py", line 398, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: agendamentos_agendamento.notificacao_enviada
+[01/Aug/2025 14:02:13] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 500 229630
+Internal Server Error: /barbearia-teste/admin/agendamentos/
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: agendamentos_agendamento.notificacao_enviada
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 210, in _wrapped_view
+    return view_func(request, slug, *args, **kwargs)
+  File "/home/gabriell/Documentos/barbearia/barbearias/views.py", line 425, in admin_agendamentos_lista
+    return render(request, 'barbearias/admin/agendamentos_lista.html', context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 326, in render
+    if match:
+       ^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/query.py", line 398, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/gabriell/Documentos/barbearia/venv/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: agendamentos_agendamento.notificacao_enviada
+[01/Aug/2025 14:02:19] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 500 229767
+/home/gabriell/Documentos/barbearia/barbearia_system/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:01:56
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[01/Aug/2025 14:04:38] "GET /barbearia-teste/admin/agendamentos/ HTTP/1.1" 200 48641
+/home/gabriell/Documentos/barbearia/agendamentos/forms.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:03:37
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/agendamentos/models.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:04:39
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/agendamentos/models.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:04:44
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/models.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:04:53
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:09:28
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:10:27
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/forms.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:10:33
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:11:00
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:11:04
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+/home/gabriell/Documentos/barbearia/barbearias/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 01, 2025 - 14:11:11
+Django version 5.2.4, using settings 'barbearia_system.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
