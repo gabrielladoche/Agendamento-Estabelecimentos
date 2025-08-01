@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Agendamento</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #E2262A;
+        }
+        .header h1 {
+            color: #E2262A;
+            margin: 0;
+            font-size: 24px;
+        }
+        .alert {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        .agendamento-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .info-row {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+        .info-icon {
+            width: 20px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .info-label {
+            font-weight: bold;
+            min-width: 120px;
+            color: #555;
+        }
+        .info-value {
+            color: #333;
+        }
+        .cliente-info {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .preco {
+            font-size: 18px;
+            font-weight: bold;
+            color: #E2262A;
+        }
+        .observacoes {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #E2262A;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 5px;
+            font-weight: bold;
+        }
+        .urgente {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🆕 Novo Agendamento!</h1>
+            <p>{{ agendamento.barbearia.nome }}</p>
+        </div>
+
+        <div class="alert">
+            ✅ Um novo agendamento foi realizado em seu estabelecimento!
+        </div>
+
+        <div class="cliente-info">
+            <h3 style="margin: 0 0 10px 0; color: #2196f3;">👤 Dados do Cliente</h3>
+            <div class="info-row">
+                <span class="info-icon">👨‍💼</span>
+                <span class="info-label">Nome:</span>
+                <span class="info-value"><strong>{{ agendamento.nome_cliente }}</strong></span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">📱</span>
+                <span class="info-label">Telefone:</span>
+                <span class="info-value">{{ agendamento.telefone_cliente }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">📧</span>
+                <span class="info-label">Email:</span>
+                <span class="info-value">{{ agendamento.email_cliente }}</span>
+            </div>
+        </div>
+
+        <div class="agendamento-info">
+            <h3 style="margin: 0 0 15px 0; color: #E2262A;">📅 Detalhes do Agendamento</h3>
+            <div class="info-row">
+                <span class="info-icon">📅</span>
+                <span class="info-label">Data:</span>
+                <span class="info-value"><strong>{{ agendamento.data_hora|date:"d/m/Y" }}</strong></span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">⏰</span>
+                <span class="info-label">Horário:</span>
+                <span class="info-value"><strong>{{ agendamento.data_hora|time:"H:i" }}</strong></span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">💼</span>
+                <span class="info-label">Serviço:</span>
+                <span class="info-value">{{ agendamento.servico.nome }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">👨‍💼</span>
+                <span class="info-label">Profissional:</span>
+                <span class="info-value">{{ agendamento.profissional.nome }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">💰</span>
+                <span class="info-label">Valor:</span>
+                <span class="info-value preco">R$ {{ agendamento.servico.preco }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">⏱️</span>
+                <span class="info-label">Duração:</span>
+                <span class="info-value">{{ agendamento.servico.duracao_minutos }} minutos</span>
+            </div>
+            <div class="info-row">
+                <span class="info-icon">🆔</span>
+                <span class="info-label">ID do Agendamento:</span>
+                <span class="info-value">#{{ agendamento.id }}</span>
+            </div>
+        </div>
+
+        {% if agendamento.observacoes %}
+        <div class="observacoes">
+            <strong>📝 Observações do Cliente:</strong><br>
+            "{{ agendamento.observacoes }}"
+        </div>
+        {% endif %}
+
+        <!-- Verificar se é agendamento para hoje ou amanhã -->
+        {% now "Y-m-d" as hoje %}
+        {% if agendamento.data_hora.date|date:"Y-m-d" == hoje %}
+        <div class="urgente">
+            <strong>⚠️ ATENÇÃO:</strong> Este agendamento é para <strong>HOJE</strong>!
+        </div>
+        {% elif agendamento.data_hora.date|date:"Y-m-d" == amanha %}
+        <div class="urgente">
+            <strong>⚠️ ATENÇÃO:</strong> Este agendamento é para <strong>AMANHÃ</strong>!
+        </div>
+        {% endif %}
+
+        <div style="text-align: center; margin: 30px 0;">
+            <p><strong>📊 Status:</strong> <span style="color: #E2262A;">{{ agendamento.get_status_display }}</span></p>
+            <p>Agendamento realizado em: <strong>{{ agendamento.criado_em|date:"d/m/Y H:i" }}</strong></p>
+        </div>
+
+        <div class="footer">
+            <p><strong>{{ agendamento.barbearia.nome }}</strong></p>
+            <p>{{ agendamento.barbearia.endereco }}</p>
+            <p>📞 {{ agendamento.barbearia.telefone }}</p>
+            <hr style="margin: 20px 0;">
+            <p style="font-size: 12px; color: #999;">
+                Esta é uma notificação automática do Sistema de Agendamento.<br>
+                Você pode gerenciar seus agendamentos através do painel administrativo.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

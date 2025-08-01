@@ -1,0 +1,32 @@
+{% extends 'barbearias/admin/base_admin.html' %}
+
+{% block title %}Deletar Profissional - {{ barbearia.nome }}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
+    <h1 class="text-2xl font-bold text-gray-900 mb-4">Deletar Profissional</h1>
+    <p class="text-gray-600 mb-6">Tem certeza que deseja deletar o profissional <strong>{{ profissional.nome }}</strong>?</p>
+    
+    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+        <div class="flex">
+            <div class="py-1">
+                <svg class="h-6 w-6 text-red-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+            </div>
+            <div>
+                <p class="font-bold">Atenção!</p>
+                <p class="text-sm">Esta ação não pode ser desfeita. Todos os dados associados a este profissional serão permanentemente removidos.</p>
+            </div>
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex justify-end space-x-4">
+            <a href="{% url 'barbearias:admin_profissionais_lista' barbearia.slug %}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Cancelar</a>
+            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">Deletar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

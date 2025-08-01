@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Painel Administrativo - {{ barbearia.nome }}{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen" style="background-color: #FFFFFF;">
+    <!-- Navbar Admin -->
+    <nav class="text-white shadow-lg" style="background-color: #1877F2;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Botão de hambúrguer para mobile -->
+                <button id="sidebar-toggle" class="lg:hidden p-2 rounded-md text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <div class="flex items-center">
+                    <a href="{% url 'barbearias:admin_dashboard' barbearia.slug %}" class="flex items-center text-white hover:text-gray-200 transition-colors">
+                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                        </svg>
+                        <span class="text-xl font-bold">Admin - {{ barbearia.nome }}</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'barbearias:mini_site' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-200 hover:text-white hover:bg-blue-700 transition-colors" style="background-color: #1877F2;">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                        Ver Site
+                    </a>
+                    <a href="{% url 'barbearias:admin_logout' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white transition-colors" style="background-color: #E2262A;">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        Sair
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50 lg:relative lg:translate-x-0 lg:block">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Menu Administrativo</h3>
+                <nav class="space-y-2">
+                    <a href="{% url 'barbearias:admin_dashboard' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium {% if request.resolver_match.url_name == 'admin_dashboard' %}text-white{% else %}text-gray-600 hover:text-white{% endif %} transition-colors" style="background-color: {% if request.resolver_match.url_name == 'admin_dashboard' %}#1877F2{% else %}transparent{% endif %};">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v0a2 2 0 01-2 2H10a2 2 0 01-2-2v0z"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+                    
+                    <a href="{% url 'barbearias:admin_servicos_lista' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium {% if 'servico' in request.resolver_match.url_name %}text-white{% else %}text-gray-600 hover:text-white{% endif %} transition-colors" style="background-color: {% if 'servico' in request.resolver_match.url_name %}#1877F2{% else %}transparent{% endif %};">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Serviços
+                    </a>
+                    
+                    <a href="{% url 'barbearias:admin_profissionais_lista' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium {% if 'profissional' in request.resolver_match.url_name %}text-white{% else %}text-gray-600 hover:text-white{% endif %} transition-colors" style="background-color: {% if 'profissional' in request.resolver_match.url_name %}#1877F2{% else %}transparent{% endif %};">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        Profissionais
+                    </a>
+                    
+                    <a href="{% url 'barbearias:admin_agendamentos_lista' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium {% if 'agendamento' in request.resolver_match.url_name %}text-white{% else %}text-gray-600 hover:text-white{% endif %} transition-colors" style="background-color: {% if 'agendamento' in request.resolver_match.url_name %}#1877F2{% else %}transparent{% endif %};">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Agendamentos
+                    </a>
+                    
+                    <a href="{% url 'barbearias:admin_horarios_funcionamento' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium {% if 'horarios' in request.resolver_match.url_name %}text-white{% else %}text-gray-600 hover:text-white{% endif %} transition-colors" style="background-color: {% if 'horarios' in request.resolver_match.url_name %}#1877F2{% else %}transparent{% endif %};">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Horários
+                    </a>
+                    
+                    <a href="{% url 'barbearias:admin_configuracoes' barbearia.slug %}" 
+                       class="flex items-center px-3 py-2 rounded-md text-sm font-medium {% if 'configuracoes' in request.resolver_match.url_name %}text-white{% else %}text-gray-600 hover:text-white{% endif %} transition-colors" style="background-color: {% if 'configuracoes' in request.resolver_match.url_name %}#1877F2{% else %}transparent{% endif %};">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Configurações
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Overlay para mobile -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden lg:hidden"></div>
+
+        <!-- Main content -->
+        <div class="flex-1 p-8 lg:ml-64">
+            <!-- Mensagens de feedback -->
+            {% if messages %}
+                <div class="mb-6">
+                    {% for message in messages %}
+                        <div class="mb-4 p-4 rounded-lg {% if message.tags == 'success' %}border text-white{% elif message.tags == 'error' %}border text-white{% elif message.tags == 'warning' %}bg-yellow-50 border border-yellow-200 text-yellow-800{% else %}border text-white{% endif %}" style="background-color: {% if message.tags == 'success' %}#E2262A{% elif message.tags == 'error' %}#E2262A{% elif message.tags != 'success' and message.tags != 'warning' %}#1877F2{% endif %}; border-color: {% if message.tags == 'success' %}#E2262A{% elif message.tags == 'error' %}#E2262A{% elif message.tags != 'success' and message.tags != 'warning' %}#1877F2{% endif %};">
+                            <div class="flex items-center">
+                                {% if message.tags == 'success' %}
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                {% elif message.tags == 'error' %}
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                {% endif %}
+                                {{ message }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            function toggleSidebar() {
+                if (sidebar.classList.contains('-translate-x-full')) {
+                    // Sidebar está oculta, mostra ela
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebarOverlay.classList.remove('hidden');
+                } else {
+                    // Sidebar está visível, esconde ela
+                    sidebar.classList.add('-translate-x-full');
+                    sidebarOverlay.classList.add('hidden');
+                }
+            }
+
+            sidebarToggle.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+
+            // Fecha a sidebar se a tela for redimensionada para desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) { // Tailwind's 'lg' breakpoint
+                    sidebar.classList.remove('-translate-x-full'); // Garante que esteja visível
+                    sidebarOverlay.classList.add('hidden'); // Esconde o overlay
+                }
+            });
+        });
+    </script>
+</body>

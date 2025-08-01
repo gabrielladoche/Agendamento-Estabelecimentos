@@ -1,0 +1,109 @@
+{% extends 'barbearias/admin/base_admin.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+        <div class="flex items-center mb-4">
+            <a href="{% url 'barbearias:admin_servicos_lista' barbearia.slug %}" 
+               class="mr-4 text-gray-500 hover:text-gray-700 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <h1 class="text-3xl font-bold text-red-600">Excluir Serviço</h1>
+        </div>
+        <p class="text-gray-600">Esta ação não pode ser desfeita</p>
+    </div>
+
+    <!-- Confirmação -->
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <!-- Alerta -->
+        <div class="bg-red-50 border-l-4 border-red-400 p-4">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-red-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                </svg>
+                <div>
+                    <h3 class="text-sm font-medium text-red-800">Atenção!</h3>
+                    <p class="text-red-700 text-sm mt-1">
+                        Você está prestes a excluir permanentemente este serviço.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detalhes do serviço -->
+        <div class="p-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-4">Confirmar exclusão do serviço:</h2>
+            
+            <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                <div class="flex items-center mb-3">
+                    <div class="flex-shrink-0 h-12 w-12">
+                        <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-medium text-gray-900">{{ servico.nome }}</h3>
+                        <div class="mt-1 space-y-1">
+                            <p class="text-sm text-gray-600">Preço: <span class="font-medium">R$ {{ servico.preco }}</span></p>
+                            <p class="text-sm text-gray-600">Duração: <span class="font-medium">{{ servico.duracao_minutos }} minutos</span></p>
+                            <p class="text-sm text-gray-600">
+                                Status: 
+                                {% if servico.ativo %}
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Ativo</span>
+                                {% else %}
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">Inativo</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-sm text-gray-500">
+                    <p>Criado em: {{ servico.criado_em|date:"d/m/Y às H:i" }}</p>
+                    {% if servico.agendamento_set.count > 0 %}
+                        <p class="text-yellow-600 font-medium mt-2">
+                            ⚠️ Este serviço possui {{ servico.agendamento_set.count }} agendamento{{ servico.agendamento_set.count|pluralize }} associado{{ servico.agendamento_set.count|pluralize }}
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Consequências -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <h4 class="text-sm font-medium text-yellow-800 mb-2">O que acontecerá:</h4>
+                <ul class="text-sm text-yellow-700 space-y-1 list-disc list-inside">
+                    <li>O serviço será removido permanentemente</li>
+                    <li>Não aparecerá mais nas opções de agendamento</li>
+                    {% if servico.agendamento_set.count > 0 %}
+                        <li>Os agendamentos existentes serão mantidos para histórico</li>
+                    {% endif %}
+                    <li>Esta ação não pode ser desfeita</li>
+                </ul>
+            </div>
+
+            <!-- Formulário de confirmação -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="flex flex-col sm:flex-row gap-3 justify-end">
+                    <a href="{% url 'barbearias:admin_servicos_lista' barbearia.slug %}" 
+                       class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors text-center">
+                        Cancelar
+                    </a>
+                    <button type="submit" 
+                            class="px-6 py-2 text-white rounded-lg font-medium transition-colors flex items-center justify-center" style="background-color: #E2262A;">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        Sim, Excluir Serviço
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

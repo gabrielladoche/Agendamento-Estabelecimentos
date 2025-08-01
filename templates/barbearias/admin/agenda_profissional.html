@@ -1,0 +1,212 @@
+{% extends 'barbearias/admin/base_admin.html' %}
+
+{% block title %}Agenda - {{ profissional.nome }} - {{ barbearia.nome }}{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <div class="flex items-center mb-6">
+        <a href="{% url 'barbearias:admin_profissionais_lista' barbearia.slug %}" 
+           class="text-gray-500 hover:text-gray-700 transition-colors mr-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </a>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Agenda - {{ profissional.nome }}</h1>
+            <p class="text-gray-600">Visualize os agendamentos do profissional</p>
+        </div>
+    </div>
+</div>
+
+<!-- Seletor de data -->
+<div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+    <div class="p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Selecionar Data</h3>
+        <form method="get" class="flex items-center space-x-4">
+            <div>
+                <label for="data" class="block text-sm font-medium text-gray-700 mb-2">Data</label>
+                <input type="date" 
+                       id="data" 
+                       name="data" 
+                       value="{{ data_selecionada|date:"Y-m-d" }}"
+                       class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+            </div>
+            <div class="pt-6">
+                <button type="submit" 
+                        class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    Ver Agenda
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Agenda visual -->
+<div class="bg-white rounded-lg shadow-sm border border-gray-200">
+    <div class="px-6 py-4 border-b border-gray-200">
+        <h3 class="text-lg font-semibold text-gray-900">
+            Agenda de {{ data_selecionada|date:"d/m/Y" }}
+            <span class="text-sm font-normal text-gray-500">({{ agendamentos|length }} agendamento{{ agendamentos|length|pluralize }})</span>
+        </h3>
+    </div>
+    
+    <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Timeline visual -->
+            <div>
+                <h4 class="text-md font-semibold text-gray-900 mb-4">Timeline do Dia</h4>
+                <div class="space-y-1">
+                    {% for horario in horarios_dia %}
+                        <div class="flex items-center">
+                            <div class="w-16 text-sm text-gray-500 text-right mr-4">
+                                {{ horario.hora }}
+                            </div>
+                            <div class="flex-1">
+                                {% if horario.agendamento %}
+                                    <div class="bg-blue-100 border-l-4 border-blue-500 p-3 rounded-r-lg">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="font-semibold text-blue-900">{{ horario.agendamento.nome_cliente }}</p>
+                                                <p class="text-sm text-blue-700">{{ horario.agendamento.servico.nome }}</p>
+                                                <p class="text-sm text-blue-600">{{ horario.agendamento.servico.duracao_minutos }}min - R$ {{ horario.agendamento.servico.preco }}</p>
+                                            </div>
+                                            <div class="text-right">
+                                                {% if horario.agendamento.status == 'agendado' %}
+                                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                        Agendado
+                                                    </span>
+                                                {% elif horario.agendamento.status == 'confirmado' %}
+                                                    <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                                        Confirmado
+                                                    </span>
+                                                {% endif %}
+                                                <p class="text-xs text-blue-600 mt-1">{{ horario.agendamento.telefone_cliente }}</p>
+                                            </div>
+                                        </div>
+                                        {% if horario.agendamento.observacoes %}
+                                            <p class="text-sm text-blue-600 mt-2 italic">{{ horario.agendamento.observacoes }}</p>
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <div class="bg-gray-50 border-l-4 border-gray-300 p-3 rounded-r-lg">
+                                        <p class="text-gray-500 text-sm">Horário livre</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Resumo do dia -->
+            <div>
+                <h4 class="text-md font-semibold text-gray-900 mb-4">Resumo do Dia</h4>
+                
+                <!-- Estatísticas -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-blue-600">{{ agendamentos|length }}</div>
+                        <div class="text-sm text-blue-800">Agendamentos</div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-green-600">
+                            {% with total_receita=0 %}
+                                {% for agendamento in agendamentos %}
+                                    {% with total_receita=total_receita|add:agendamento.servico.preco %}{% endwith %}
+                                {% endfor %}
+                                R$ {{ total_receita|floatformat:2 }}
+                            {% endwith %}
+                        </div>
+                        <div class="text-sm text-green-800">Receita Prevista</div>
+                    </div>
+                </div>
+                
+                <!-- Lista de agendamentos -->
+                {% if agendamentos %}
+                    <div class="space-y-3">
+                        <h5 class="font-medium text-gray-900">Agendamentos do Dia</h5>
+                        {% for agendamento in agendamentos %}
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="font-semibold text-gray-900">{{ agendamento.nome_cliente }}</div>
+                                    <div class="text-sm text-gray-500">{{ agendamento.data_hora|time:"H:i" }}</div>
+                                </div>
+                                <div class="text-sm text-gray-600">
+                                    <p>{{ agendamento.servico.nome }} - {{ agendamento.servico.duracao_minutos }}min</p>
+                                    <p>R$ {{ agendamento.servico.preco }} - {{ agendamento.telefone_cliente }}</p>
+                                </div>
+                                {% if agendamento.observacoes %}
+                                    <div class="mt-2 text-sm text-gray-500 italic">
+                                        "{{ agendamento.observacoes }}"
+                                    </div>
+                                {% endif %}
+                                <div class="mt-2 flex items-center justify-between">
+                                    {% if agendamento.status == 'agendado' %}
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            Agendado
+                                        </span>
+                                    {% elif agendamento.status == 'confirmado' %}
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                            Confirmado
+                                        </span>
+                                    {% endif %}
+                                    <div class="flex space-x-2">
+                                        {% if agendamento.status == 'agendado' %}
+                                            <form method="post" action="{% url 'barbearias:admin_agendamento_atualizar_status' barbearia.slug agendamento.id %}" class="inline">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="status" value="confirmado">
+                                                <button type="submit" class="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700">
+                                                    Confirmar
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-8 text-gray-500">
+                        <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <p>Nenhum agendamento para esta data</p>
+                        <p class="text-sm mt-1">O profissional tem o dia livre!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navegação de datas -->
+<div class="mt-6 flex justify-center space-x-4">
+    {% with data_anterior=data_selecionada|add:"-1 days" %}
+        <a href="?data={{ data_anterior|date:"Y-m-d" }}" 
+           class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Dia Anterior
+        </a>
+    {% endwith %}
+    
+    <a href="?data={{ "today"|date:"Y-m-d" }}" 
+       class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+        Hoje
+    </a>
+    
+    {% with data_proxima=data_selecionada|add:"1 days" %}
+        <a href="?data={{ data_proxima|date:"Y-m-d" }}" 
+           class="flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+            Próximo Dia
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </a>
+    {% endwith %}
+</div>
+{% endblock %}

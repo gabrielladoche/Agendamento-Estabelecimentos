@@ -1,0 +1,67 @@
+{% extends 'barbearias/admin/base_admin.html' %}
+
+{% block title %}Horários de Funcionamento - {{ barbearia.nome }}{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Horários de Funcionamento</h1>
+    <p class="text-gray-600">Defina os horários de abertura e fechamento do seu estabelecimento para cada dia da semana.</p>
+</div>
+
+<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        {% for item in forms %}
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center border-b border-gray-100 pb-4 last:border-b-0">
+                <div class="md:col-span-1">
+                    <label class="block text-lg font-semibold text-gray-800">{{ item.dia_nome }}</label>
+                    {{ item.form.dia_semana.as_hidden }}
+                </div>
+                
+                <div class="md:col-span-1">
+                    <label for="{{ item.form.abertura.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Abertura</label>
+                    {{ item.form.abertura }}
+                </div>
+                
+                <div class="md:col-span-1">
+                    <label for="{{ item.form.fechamento.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Fechamento</label>
+                    {{ item.form.fechamento }}
+                </div>
+                
+                <div class="md:col-span-1 flex items-center mt-4 md:mt-0">
+                    {{ item.form.fechado }}
+                    <label for="{{ item.form.fechado.id_for_label }}" class="ml-2 text-sm font-medium text-gray-700">Fechado o dia todo</label>
+                </div>
+
+                {% if item.form.errors %}
+                    <div class="md:col-span-4 text-red-600 text-sm mt-2">
+                        {% for field in item.form %}
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <p>{{ field.label }}: {{ error }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if item.form.non_field_errors %}
+                            {% for error in item.form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="pt-4">
+            <button type="submit" 
+                    class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Salvar Horários
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

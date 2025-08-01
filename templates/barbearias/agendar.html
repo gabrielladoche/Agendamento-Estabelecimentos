@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+
+{% block title %}Agendar - {{ barbearia.nome }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Navegação de volta -->
+    <div class="mb-6">
+        <a href="{% url 'barbearias:mini_site' barbearia.slug %}" 
+           class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Voltar para {{ barbearia.nome }}
+        </a>
+    </div>
+
+    <!-- Card principal -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gradient-to-r text-white p-6" style="background-color: #E2262A;">
+            <h1 class="text-3xl font-bold flex items-center">
+                <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                Agendar Serviço
+            </h1>
+            <p class="text-red-100 mt-2">{{ barbearia.nome }}</p>
+        </div>
+        
+        <div class="p-8">
+            <!-- Mensagens de erro/sucesso -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mb-6 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-50 border border-green-200 text-green-800{% elif message.tags == 'error' %}bg-red-50 border border-red-200 text-red-800{% else %}bg-blue-50 border border-blue-200 text-blue-800{% endif %}">
+                        <div class="flex items-center">
+                            {% if message.tags == 'success' %}
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            {% elif message.tags == 'error' %}
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            {% endif %}
+                            {{ message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Dados pessoais -->
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Seus Dados
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.nome_cliente.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                Nome Completo *
+                            </label>
+                            <input type="text" 
+                                   name="{{ form.nome_cliente.name }}" 
+                                   id="{{ form.nome_cliente.id_for_label }}"
+                                   value="{{ form.nome_cliente.value|default:'' }}"
+                                   placeholder="Seu nome completo"
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors">
+                            {% if form.nome_cliente.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.nome_cliente.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            <label for="{{ form.telefone_cliente.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                Telefone *
+                            </label>
+                            <input type="tel" 
+                                   name="{{ form.telefone_cliente.name }}" 
+                                   id="{{ form.telefone_cliente.id_for_label }}"
+                                   value="{{ form.telefone_cliente.value|default:'' }}"
+                                   placeholder="(11) 99999-9999"
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors">
+                            {% if form.telefone_cliente.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.telefone_cliente.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="{{ form.email_cliente.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            E-mail (opcional)
+                        </label>
+                        <input type="email" 
+                               name="{{ form.email_cliente.name }}" 
+                               id="{{ form.email_cliente.id_for_label }}"
+                               value="{{ form.email_cliente.value|default:'' }}"
+                               placeholder="seu@email.com"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors">
+                        {% if form.email_cliente.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.email_cliente.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Serviço e profissional -->
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Serviço e Profissional
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="{{ form.servico.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                Serviço *
+                            </label>
+                            <select name="{{ form.servico.name }}" 
+                                    id="{{ form.servico.id_for_label }}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors">
+                                <option value="">Selecione um serviço</option>
+                                {% for servico in form.servico.field.queryset %}
+                                    <option value="{{ servico.pk }}" 
+                                            {% if form.servico.value == servico.pk|stringformat:"s" %}selected{% endif %}>
+                                        {{ servico.nome }} - R$ {{ servico.preco }} ({{ servico.duracao_minutos }}min)
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.servico.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.servico.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div>
+                            <label for="{{ form.profissional.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                                Profissional *
+                            </label>
+                            <select name="{{ form.profissional.name }}" 
+                                    id="{{ form.profissional.id_for_label }}"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors">
+                                <option value="">Selecione um profissional</option>
+                                {% for profissional in form.profissional.field.queryset %}
+                                    <option value="{{ profissional.pk }}" 
+                                            {% if form.profissional.value == profissional.pk|stringformat:"s" %}selected{% endif %}>
+                                        {{ profissional.nome }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.profissional.errors %}
+                                <p class="mt-1 text-sm text-red-600">{{ form.profissional.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data e hora -->
+                <div class="border-b border-gray-200 pb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Data e Hora
+                    </h3>
+                    
+                    <!-- Seleção de data -->
+                    <div class="mb-4">
+                        <label for="data_selecionada" class="block text-sm font-medium text-gray-700 mb-2">
+                            Data *
+                        </label>
+                        <input type="date" 
+                               id="data_selecionada"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                               onchange="validarDiaFechado(this)">
+                        <p class="mt-1 text-sm text-gray-500">Primeiro selecione a data desejada</p>
+                    </div>
+                    
+                    <!-- Horários disponíveis -->
+                    <div id="horarios-container" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Horários Disponíveis *
+                        </label>
+                        <div id="horarios-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 mb-4">
+                            <!-- Horários serão carregados dinamicamente -->
+                        </div>
+                        <div id="horarios-loading" class="hidden text-center py-4">
+                            <div class="inline-flex items-center px-4 py-2 bg-blue-50 rounded-lg">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Carregando horários disponíveis...
+                            </div>
+                        </div>
+                        <div id="horarios-erro" class="hidden bg-red-50 border border-red-200 rounded-lg p-3">
+                            <p class="text-sm text-red-600">Erro ao carregar horários. Tente novamente.</p>
+                        </div>
+                        <div id="horarios-vazio" class="hidden bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                            <p class="text-sm text-yellow-600">Não há horários disponíveis para esta data. Escolha outra data.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campo hidden para enviar o datetime selecionado -->
+                    <input type="hidden" 
+                           name="{{ form.data_hora.name }}" 
+                           id="{{ form.data_hora.id_for_label }}"
+                           value="{{ form.data_hora.value|default:'' }}">
+                    {% if form.data_hora.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ form.data_hora.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Observações -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                        </svg>
+                        Observações
+                    </h3>
+                    
+                    <div>
+                        <label for="{{ form.observacoes.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                            Observações (opcional)
+                        </label>
+                        <textarea name="{{ form.observacoes.name }}" 
+                                  id="{{ form.observacoes.id_for_label }}"
+                                  rows="4"
+                                  placeholder="Observações adicionais sobre seu agendamento..."
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-none">{{ form.observacoes.value|default:'' }}</textarea>
+                        {% if form.observacoes.errors %}
+                            <p class="mt-1 text-sm text-red-600">{{ form.observacoes.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-end pt-6">
+                    <a href="{% url 'barbearias:mini_site' barbearia.slug %}" 
+                       class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-center">
+                        Cancelar
+                    </a>
+                    <button type="submit" 
+                            class="px-8 py-3 text-white rounded-lg font-semibold transition-colors flex items-center justify-center" style="background-color: #E2262A;">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Confirmar Agendamento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// Variáveis globais
+let diasFechados = [];
+
+// Função global para validar dia fechado
+function validarDiaFechado(input) {
+    if (!input.value || diasFechados.length === 0) return true;
+    
+    const data = new Date(input.value + 'T00:00:00');
+    const diaSemanaJS = data.getDay();
+    
+    // Converter JS (0=domingo) para Django (0=segunda)
+    const diasemanaMapping = {
+        0: 6, // domingo -> 6
+        1: 0, // segunda -> 0
+        2: 1, // terça -> 1
+        3: 2, // quarta -> 2
+        4: 3, // quinta -> 3
+        5: 4, // sexta -> 4
+        6: 5  // sábado -> 5
+    };
+    
+    const diaDjango = diasemanaMapping[diaSemanaJS];
+    
+    if (diasFechados.includes(diaDjango)) {
+        alert('O estabelecimento está fechado neste dia. Por favor, escolha outro dia.');
+        input.value = '';
+        document.getElementById('horarios-container').classList.add('hidden');
+        return false;
+    }
+    return true;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dataSelecionada = document.getElementById('data_selecionada');
+    const servicoSelect = document.getElementById('{{ form.servico.id_for_label }}');
+    const profissionalSelect = document.getElementById('{{ form.profissional.id_for_label }}');
+    const horariosContainer = document.getElementById('horarios-container');
+    const horariosGrid = document.getElementById('horarios-grid');
+    const horariosLoading = document.getElementById('horarios-loading');
+    const horariosErro = document.getElementById('horarios-erro');
+    const horariosVazio = document.getElementById('horarios-vazio');
+    const dataHoraInput = document.getElementById('{{ form.data_hora.id_for_label }}');
+    
+    // Definir data mínima como amanhã
+    const amanha = new Date();
+    amanha.setDate(amanha.getDate() + 1);
+    dataSelecionada.min = amanha.toISOString().split('T')[0];
+    
+    // Carregar dias fechados e configurar input de data
+    fetch('{% url "barbearias:api_dias_fechados" barbearia.slug %}')
+        .then(response => response.json())
+        .then(data => {
+            diasFechados = data.dias_fechados;
+            console.log('Dias fechados (Django):', diasFechados);
+        })
+        .catch(error => {
+            console.error('Erro ao carregar dias fechados:', error);
+        });
+    
+    // Usar a função global validarDiaFechado
+    
+    // Validação já está no onchange do input
+    
+    // Event listeners
+    dataSelecionada.addEventListener('change', carregarHorarios);
+    servicoSelect.addEventListener('change', carregarHorarios);
+    profissionalSelect.addEventListener('change', carregarHorarios);
+    
+    function carregarHorarios() {
+        const data = dataSelecionada.value;
+        const servicoId = servicoSelect.value;
+        const profissionalId = profissionalSelect.value;
+        
+        // Resetar seleção anterior
+        dataHoraInput.value = '';
+        
+        if (!data || !servicoId || !profissionalId) {
+            horariosContainer.classList.add('hidden');
+            return;
+        }
+        
+        // Verificar se o dia está fechado antes de carregar horários
+        if (!validarDiaFechado(dataSelecionada)) {
+            horariosContainer.classList.add('hidden');
+            return;
+        }
+        
+        // Mostrar container e loading
+        horariosContainer.classList.remove('hidden');
+        horariosLoading.classList.remove('hidden');
+        horariosErro.classList.add('hidden');
+        horariosVazio.classList.add('hidden');
+        horariosGrid.innerHTML = '';
+        
+        // Fazer requisição para API
+        const url = `{% url 'barbearias:api_horarios_disponiveis' barbearia.slug %}?profissional_id=${profissionalId}&data=${data}&servico_id=${servicoId}`;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                horariosLoading.classList.add('hidden');
+                
+                if (data.erro) {
+                    horariosErro.classList.remove('hidden');
+                    return;
+                }
+                
+                if (data.horarios.length === 0) {
+                    horariosVazio.classList.remove('hidden');
+                    return;
+                }
+                
+                // Criar botões de horário
+                data.horarios.forEach(horario => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-green-50 hover:border-green-300 transition-colors focus:ring-2 focus:ring-green-500 focus:border-green-500';
+                    button.textContent = horario.hora;
+                    button.dataset.datetime = horario.datetime;
+                    
+                    button.addEventListener('click', function() {
+                        // Remover seleção anterior
+                        document.querySelectorAll('#horarios-grid button').forEach(btn => {
+                            btn.classList.remove('bg-green-100', 'border-green-500', 'text-green-700');
+                            btn.classList.add('border-gray-300');
+                        });
+                        
+                        // Aplicar seleção atual
+                        this.classList.remove('border-gray-300');
+                        this.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                        
+                        // Definir valor no input hidden
+                        dataHoraInput.value = this.dataset.datetime;
+                    });
+                    
+                    horariosGrid.appendChild(button);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar horários:', error);
+                horariosLoading.classList.add('hidden');
+                horariosErro.classList.remove('hidden');
+            });
+    }
+    
+    // Validação no envio do formulário
+    document.querySelector('form').addEventListener('submit', function(e) {
+        if (!dataHoraInput.value) {
+            e.preventDefault();
+            alert('Por favor, selecione uma data e horário para o agendamento.');
+            return false;
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block title %}Consultar Agendamentos{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Navegação de volta -->
+    <div class="mb-6">
+        <a href="{% url 'barbearias:mini_site' barbearia.slug %}" 
+           class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Voltar para {{ barbearia.nome }}
+        </a>
+    </div>
+
+    <!-- Card principal -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6">
+            <h1 class="text-3xl font-bold flex items-center">
+                <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                Consultar Agendamentos
+            </h1>
+            <p class="text-blue-100 mt-2">Digite seu telefone para consultar seus agendamentos</p>
+        </div>
+        
+        <div class="p-8">
+            <!-- Formulário de busca -->
+            <form method="post" class="mb-8">
+                {% csrf_token %}
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <label for="telefone" class="block text-sm font-medium text-gray-700 mb-2">
+                            Número de Telefone
+                        </label>
+                        <input type="tel" 
+                               id="telefone" 
+                               name="telefone" 
+                               placeholder="(11) 99999-9999" 
+                               value="{{ telefone|default:'' }}"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div class="md:flex md:items-end">
+                        <button type="submit" 
+                                class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Resultados -->
+            {% if telefone %}
+                <div class="border-t border-gray-200 pt-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                        Resultados para: <span class="text-blue-600">{{ telefone }}</span>
+                    </h2>
+                    
+                    {% if agendamentos %}
+                        <div class="space-y-4">
+                            {% for agendamento in agendamentos %}
+                                <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                                        <div class="flex-1 space-y-3 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-4">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-500">Barbearia</p>
+                                                <p class="text-gray-900 font-semibold">{{ agendamento.barbearia.nome }}</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-500">Serviço</p>
+                                                <p class="text-gray-900">{{ agendamento.servico.nome }}</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-500">Profissional</p>
+                                                <p class="text-gray-900">{{ agendamento.profissional.nome }}</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-500">Data e Hora</p>
+                                                <p class="text-gray-900 font-semibold">{{ agendamento.data_hora|date:"d/m/Y H:i" }}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4 lg:mt-0 lg:ml-6 flex flex-col space-y-2">
+                                            {% if agendamento.status == 'agendado' %}
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    Agendado
+                                                </span>
+                                                <!-- Botão de cancelar para agendamentos -->
+                                                <form method="post" action="{% url 'barbearias:cancelar_agendamento_cliente' barbearia.slug agendamento.id %}" class="inline-block">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="telefone" value="{{ telefone }}">
+                                                    <button type="submit" 
+                                                            onclick="return confirm('Tem certeza que deseja cancelar este agendamento?')"
+                                                            class="w-full px-3 py-1 text-sm text-white rounded-md transition-colors flex items-center justify-center" style="background-color: #E2262A;">
+                                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        Cancelar
+                                                    </button>
+                                                </form>
+                                            {% elif agendamento.status == 'confirmado' %}
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white" style="background-color: #E2262A;">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                    Confirmado
+                                                </span>
+                                                <!-- Botão de cancelar para agendamentos confirmados -->
+                                                <form method="post" action="{% url 'barbearias:cancelar_agendamento_cliente' barbearia.slug agendamento.id %}" class="inline-block">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="telefone" value="{{ telefone }}">
+                                                    <button type="submit" 
+                                                            onclick="return confirm('Tem certeza que deseja cancelar este agendamento? Esta ação não pode ser desfeita.')"
+                                                            class="w-full px-3 py-1 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors flex items-center justify-center">
+                                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        Cancelar
+                                                    </button>
+                                                </form>
+                                            {% elif agendamento.status == 'cancelado' %}
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                    </svg>
+                                                    Cancelado
+                                                </span>
+                                            {% elif agendamento.status == 'concluido' %}
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                    Concluído
+                                                </span>
+                                            {% elif agendamento.status == 'ausencia' %}
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"></path>
+                                                    </svg>
+                                                    Ausência
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    {% if agendamento.observacoes %}
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-sm font-medium text-gray-500 mb-1">Observações</p>
+                                            <p class="text-gray-700">{{ agendamento.observacoes }}</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-12">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.291-1.1-5.291-2.709M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <h3 class="text-xl font-semibold text-gray-700 mb-2">Nenhum agendamento encontrado</h3>
+                            <p class="text-gray-500">Não foram encontrados agendamentos para este número de telefone.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Informações adicionais -->
+    <div class="mt-8 text-center">
+        <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
+            <div class="flex items-center justify-center mb-2">
+                <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="text-lg font-semibold text-blue-900">Informações Importantes</h3>
+            </div>
+            <p class="text-blue-800">
+                Aqui você pode consultar seus agendamentos dos últimos 30 dias desta barbearia. 
+                Agendamentos com status "Agendado" ou "Confirmado" podem ser cancelados até 2 horas antes do horário marcado.
+                Para agendar um novo serviço, <a href="{% url 'barbearias:agendar' barbearia.slug %}" class="underline hover:no-underline">clique aqui</a>.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
